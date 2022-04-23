@@ -68,22 +68,30 @@ extension WalletAppView {
     
     //LISTCART
     var listCart: some View {
-        ScrollView(.vertical) {
-            VStack {
-                ForEach(listPaperUsers) {  papers in
-                    NavigationLink(destination: {
-                        PapersDetailView(listPaperUsers: papers.imageName)
-                    }, label: {
-                        VStack {
-                            Text(papers.name)
-                                .padding()
-                                .foregroundColor(.black)
-                        }
-                    })
-                    
+        NavigationView {
+            ScrollView(.vertical) {
+                VStack {
+                    ForEach(listPaperUsers) {  papers in
+                        NavigationLink(destination: {
+                            PapersDetailView(listPaperUsers: papers)
+                        }, label: {
+                            VStack {
+                                Text(papers.name)
+                                    .padding(10)
+                                    .foregroundColor(.black)
+                            }
+                        })
+                        
+                    }
                 }
             }
+            .navigationTitle(
+                Text("Vos cartes :"))
+            
         }
+        
+        
+        
     }
 }
     

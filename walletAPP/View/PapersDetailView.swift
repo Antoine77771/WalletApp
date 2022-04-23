@@ -12,11 +12,16 @@ struct PapersDetailView: View {
     var listPaperUsers : PaperUser
     
     var body: some View {
-        VStack {
-            Image(listPaperUsers.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-            
+        ScrollView {
+              VStack {
+                  Text(listPaperUsers.name)
+                      .padding()
+                      .font(.system(size: 20, weight: .light))
+                Image(listPaperUsers.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
+            }
         }
         
     }

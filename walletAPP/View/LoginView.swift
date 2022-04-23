@@ -16,49 +16,51 @@ struct LoginView: View {
     
     
     var body: some View {
-        VStack(alignment: .center, spacing: 16) {
-            Spacer()
-            Text("Login")
-                .font(.system(size: 50, weight: .bold, design: .rounded))
-                .padding(.horizontal)
-           Divider()
-            VStack(alignment: .center, spacing: 20) {
-                Form {
-                    Section() {
+        ZStack {
+            VStack(alignment: .center, spacing: 16) {
+                Spacer()
+                Text("Login")
+                    .font(.system(size: 50, weight: .bold, design: .rounded))
+                    .padding(.horizontal)
+               Divider()
+                VStack(alignment: .center, spacing: 20) {
+                    Form {
+                        Section() {
+                            TextField("Prenom", text: $userName)
+                        }
+                        Section() {
+                            TextField("Nom", text: $lastName)
+                        }
+                        Section() {
+                            SecureField("Passeword", text: $passeword)
+                        }
                         
-                        TextField("Prenom", text: $userName)
-                    }
-                    Section() {
-                        TextField("Nom", text: $lastName)
-                    }
-                    Section() {
-                        SecureField("Passeword", text: $passeword)
                     }
                     
+                    
                 }
-                
+            
+                Spacer()
+                .cornerRadius(10)
+                Button(action: {
+                    
+                }, label: {
+                    Text("Connexion")
+                })
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(.blue)
+                    .cornerRadius(15)
+                    
+                Button(action: {
+                    isSignView.toggle()
+                }, label: {
+                    Text("Not accont yet ?")
+                })
+                .sheet(isPresented: $isSignView, content: {
+                    SingInUpView()
+                })
             }
-        
-            Spacer()
-            .cornerRadius(10)
-            Button(action: {
-                
-            }, label: {
-                Text("Connexion")
-            })
-                .padding()
-                .foregroundColor(.white)
-                .background(.blue)
-                .cornerRadius(15)
-                
-            Button(action: {
-                isSignView.toggle()
-            }, label: {
-                Text("Not accont yet ?")
-            })
-            .sheet(isPresented: $isSignView, content: {
-                SingInUpView()
-            })
         }
     
         

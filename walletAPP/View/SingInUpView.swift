@@ -56,7 +56,7 @@ struct SingInUpView: View {
             //Button
             SingInUpView.button
         }
-        .background(.blue)
+        .background(.mint)
     }
 }
 
