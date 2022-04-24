@@ -62,7 +62,9 @@ struct LoginView: View {
                 })
             }
         }
-    
+        .background(.linearGradient(colors: [.black, Color("Color")],
+                    startPoint: .leading, endPoint: .trailing))
+        .ignoresSafeArea()
         
         
     }

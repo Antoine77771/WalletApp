@@ -21,7 +21,7 @@ extension PaperUser {
     
     static let listPaperUsers: [PaperUser] = [
         PaperUser(name: "Carte d'identiter", imageName: "mo"),
-        PaperUser(name: "Permis de conduire", imageName: ""),
+        PaperUser(name: "Permis de conduire", imageName: "Permis"),
         PaperUser(name: "Assurance voiture", imageName: ""),
         PaperUser(name: "Carte grise", imageName: ""),
         PaperUser(name: "Carte mutuelle", imageName: ""),

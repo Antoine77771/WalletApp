@@ -28,7 +28,9 @@ struct ContentView: View {
                     Text("connect")
                 }
         }
+        .foregroundColor(.white)
     }
+        
     
     
     

@@ -56,7 +56,9 @@ struct SingInUpView: View {
             //Button
             SingInUpView.button
         }
-        .background(.mint)
+        .background(.linearGradient(colors: [.black, Color("Color")],
+                    startPoint: .leading, endPoint: .trailing))
+        .ignoresSafeArea()
     }
 }
 
