@@ -22,6 +22,7 @@ struct PapersDetailView: View {
                     .aspectRatio(contentMode: .fit)
                 
             }
+              .padding()
         }
         
     }

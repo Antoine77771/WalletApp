@@ -10,68 +10,68 @@ import SwiftUI
 struct LoginView: View {
     
     @State var userName: String = ""
-    @State var lastName: String = ""
-    @State var passeword: String = ""
+    @State var password: String = ""
     @State var isSignView = false
-    
+    @EnvironmentObject private var walletColor: WalletViewModel
     
     var body: some View {
         ZStack {
+            walletColor.arrierePlant
+                .ignoresSafeArea()
             VStack(alignment: .center, spacing: 16) {
                 Spacer()
-                Text("Login")
-                    .font(.system(size: 50, weight: .bold, design: .rounded))
-                    .padding(.horizontal)
-               Divider()
-                VStack(alignment: .center, spacing: 20) {
-                    Form {
-                        Section() {
-                            TextField("Prenom", text: $userName)
-                        }
-                        Section() {
-                            TextField("Nom", text: $lastName)
-                        }
-                        Section() {
-                            SecureField("Passeword", text: $passeword)
-                        }
-                        
-                    }
-                    
-                    
-                }
-            
+                Text("Hello, you!")
+                    .foregroundColor(walletColor.arrierePlant == Color.black ? Color.white : Color.black)
+                    .font(.system(size: 40, weight: .semibold))
+                    .shadow(radius: 2)
+                    Divider()
                 Spacer()
-                .cornerRadius(10)
+                TextField("Username", text: $userName)
+                    .padding()
+                    .background(.ultraThickMaterial)
+                    .cornerRadius(25)
+                    .shadow(radius: 5)
+                SecureField("Password", text: $password)
+                    .padding()
+                    .background(.ultraThickMaterial)
+                    .cornerRadius(25)
+                    .shadow(radius: 5)
+                Spacer()
                 Button(action: {
                     
                 }, label: {
-                    Text("Connexion")
+                    Text("Signup ")
                 })
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(.blue)
-                    .cornerRadius(15)
-                    
+                .padding()
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
+                .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.white)
+                .background(.blue)
+                .cornerRadius(50)
+                
                 Button(action: {
                     isSignView.toggle()
                 }, label: {
                     Text("Not accont yet ?")
+                        .foregroundColor(.blue)
+                        .fontWeight(.semibold)
                 })
                 .sheet(isPresented: $isSignView, content: {
                     SingInUpView()
                 })
+                Spacer()
+             }
+            .padding()
             }
         }
-        .background(.linearGradient(colors: [.black, Color("Color")],
-                    startPoint: .leading, endPoint: .trailing))
-        .ignoresSafeArea()
-        
         
     }
-}
+
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(WalletViewModel())
     }
 }

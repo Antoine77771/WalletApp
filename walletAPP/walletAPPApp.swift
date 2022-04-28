@@ -12,6 +12,7 @@ struct walletAPPApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(WalletViewModel())
         }
     }
 }

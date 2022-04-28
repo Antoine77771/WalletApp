@@ -27,8 +27,13 @@ struct ContentView: View {
                     Image(systemName: "tray.and.arrow.down.fill")
                     Text("connect")
                 }
+            ParameterView()
+                .tabItem {
+                    Image(systemName: "gear.circle")
+                    Text("Paramètre")
+                }
         }
-        .foregroundColor(.white)
+        
     }
         
     
@@ -42,6 +47,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(WalletViewModel())
         
     }
 }

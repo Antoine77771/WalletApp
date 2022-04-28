@@ -10,33 +10,37 @@ import SwiftUI
 struct WalletAppView: View {
     
     var listPaperUsers : [PaperUser]
+    @EnvironmentObject private var walletColor: WalletViewModel
     
     var body: some View {
         ZStack {
+            //probleme en simulation sur iphone
+            walletColor.arrierePlant
+                .ignoresSafeArea()
             VStack(spacing: 16) {
                 //header
                 header
                 Divider()
-                    .background(.white)
+                    .background(.black)
                 
                 //profils
                 profils
                 Divider()
-                    .background(.white)
+                    .background(.black)
                 
                 //listCart
                 listCart
             }
         }
-        .background(.linearGradient(colors: [.black, Color("Color")],
-                                    startPoint: .leading, endPoint: .trailing))
-        .foregroundColor(.white)
+        
+        
     }
 }
 
 struct WalletAppView_Previews: PreviewProvider {
     static var previews: some View {
         WalletAppView(listPaperUsers: PaperUser.listPaperUsers)
+            .environmentObject(WalletViewModel().self)
     }
 }
 
@@ -62,6 +66,7 @@ extension WalletAppView {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 200, height: 200)
                 .clipShape(Circle())
+                .shadow(radius: 5)
             Text("ANTOINE")
                 .font(.system(size: 20, weight: .semibold, design: .rounded))
             Text("Guerre-Genton")
@@ -71,30 +76,15 @@ extension WalletAppView {
     
     //LISTCART
     var listCart: some View {
-        VStack(spacing: 0.0) {
-            NavigationView {
-                ScrollView(.vertical) {
-                    VStack {
-                        ForEach(listPaperUsers) {  papers in
-                            NavigationLink(destination: {
-                                PapersDetailView(listPaperUsers: papers)
-                            }, label: {
-                                VStack {
-                                    Text(papers.name)
-                                        .padding(10)
-                                        .foregroundColor(.white)
-                                }
-                            })
-                        }
-                    }
+        NavigationView {
+            List {
+                ForEach(listPaperUsers) { Paper in
+                    NavigationLink(destination: PapersDetailView(listPaperUsers: Paper)) {
+                        Text(Paper.name)
+                    }.padding()
                 }
-                .navigationTitle("Vos cartes :")
-                .navigationBarTitleDisplayMode(.inline)
-                .frame(width: 500)
-                .background(.linearGradient(colors: [.black, Color("Color")],
-                            startPoint: .leading, endPoint: .trailing))
+                .navigationTitle("Vos cartes")
             }
-            .frame(width: 400)
         }
     }
 }

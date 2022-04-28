@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
+
+class WalletViewModel: ObservableObject {
+    
+    @Published var arrierePlant = Color("AccentColor")
+}
+    
